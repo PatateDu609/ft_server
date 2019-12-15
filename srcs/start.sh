@@ -24,13 +24,15 @@ ln -s $NGINX_CONF $NGINX_CONF_LNK
 echo "Installing mkcert (for SSL)"
 wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.1/mkcert-v1.4.1-linux-amd64
 mv mkcert-v1.4.1-linux-amd64 mkcert
-cd mkcert
 chmod +x mkcert
-cp mkcert /usr/local/bin
 
 echo "Setting up mkcert"
-mkcert -install
-mkcert boucetta.com
+./mkcert -install
+./mkcert boucetta.com '*.boucetta.com' localhost 127.0.0.1 ::1
+
+echo "\n\n\n\n"
+ls
+echo "\n\n\n\n"
 
 echo "Installing Phpmyadmin and Wordpress"
 tar xf pma.tar.gz

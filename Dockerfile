@@ -6,11 +6,15 @@
 #    By: gboucett <gboucett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/11 14:36:16 by gboucett          #+#    #+#              #
-#    Updated: 2019/12/15 17:16:11 by gboucett         ###   ########.fr        #
+#    Updated: 2019/12/15 23:30:01 by gboucett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FROM debian:buster
+
+LABEL "name"="ft_server" \
+		"maintainer"="gboucett" \
+		"mail"="gboucett@student.42.fr"
 
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y nginx

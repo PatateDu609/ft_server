@@ -6,7 +6,7 @@
 #    By: gboucett <gboucett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/14 22:54:16 by gboucett          #+#    #+#              #
-#    Updated: 2019/12/15 17:29:28 by gboucett         ###   ########.fr        #
+#    Updated: 2019/12/15 23:32:37 by gboucett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,12 @@ server {
 	listen [::]:80;
 	listen 443 ssl;
 
+	ssl on;
+	ssl_certificate /root/boucetta.com+4.pem;
+	ssl_certificate_key /root/boucetta.com+4-key.pem;
+
 	server_name boucetta.com *.boucetta.com;
 
-	ssl_certificate /root/boucetta.com.pem;
-	ssl_certificate_key /root/boucetta.com-key.pem;
 
 	root /var/www/boucetta.com;
 	index index.php index.html;
