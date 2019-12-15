@@ -1,0 +1,25 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    config_nginx                                       :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gboucett <gboucett@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/12/14 22:54:16 by gboucett          #+#    #+#              #
+#    Updated: 2019/12/15 01:37:26 by gboucett         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+server {
+	listen 80;
+	listen [::]:80;
+	server_name boucetta.com;
+
+	root /var/www/boucetta.com;
+	index index.php index.html;
+
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+	}
+}
