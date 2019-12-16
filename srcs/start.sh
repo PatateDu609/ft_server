@@ -11,9 +11,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-WEBDIR="/var/www/boucetta.com"
-NGINX_CONF_LNK="/etc/nginx/sites-enabled/boucetta.com.conf"
-NGINX_CONF="/etc/nginx/sites-available/boucetta.com.conf"
+WEBDIR="/var/www/localhost"
+NGINX_CONF_LNK="/etc/nginx/sites-enabled/localhost.conf"
+NGINX_CONF="/etc/nginx/sites-available/localhost.conf"
 
 cd /root
 echo "Setting up nginx config file"
@@ -28,11 +28,7 @@ chmod +x mkcert
 
 echo "Setting up mkcert"
 ./mkcert -install
-./mkcert boucetta.com '*.boucetta.com' localhost 127.0.0.1 ::1
-
-echo "\n\n\n\n"
-ls
-echo "\n\n\n\n"
+./mkcert localhost
 
 echo "Installing Phpmyadmin and Wordpress"
 tar xf pma.tar.gz
@@ -53,4 +49,5 @@ echo "UPDATE mysql.user SET plugin = 'mysql_native_password' WHERE user='root';"
 echo "Launching php and Nginx"
 service php7.3-fpm start
 # service nginx start
-nginx -g 'daemon off;'
+# nginx -g 'daemon off;'
+bash

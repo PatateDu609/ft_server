@@ -13,17 +13,25 @@
 server {
 	listen 80;
 	listen [::]:80;
+	server_name localhost *.localhost;
+	return 400;
+}
+
+server {
 	listen 443 ssl;
+	listen [::]:443 ssl;
 
 	ssl on;
-	ssl_certificate /root/boucetta.com+4.pem;
-	ssl_certificate_key /root/boucetta.com+4-key.pem;
+	include snippets/snakeoil.conf;
 
-	server_name boucetta.com *.boucetta.com;
-
-
-	root /var/www/boucetta.com;
+	root /var/www/localhost;
 	index index.php index.html;
+
+	server_name localhost *.localhost;
+	
+	location / {
+		try_files $uri $uri/ =404;
+	}
 
 	location ~ \.php$ {
 		include snippets/fastcgi-php.conf;
