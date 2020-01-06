@@ -6,7 +6,7 @@
 #    By: gboucett <gboucett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/14 22:54:16 by gboucett          #+#    #+#              #
-#    Updated: 2019/12/15 23:32:37 by gboucett         ###   ########.fr        #
+#    Updated: 2020/01/06 17:52:41 by gboucett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ server {
 	listen 80;
 	listen [::]:80;
 	server_name localhost *.localhost;
-	return 400;
+	return 301 https://localhost;
 }
 
 server {
@@ -22,13 +22,14 @@ server {
 	listen [::]:443 ssl;
 
 	ssl on;
-	include snippets/snakeoil.conf;
+	ssl_certificate		/root/localhost.pem;
+	ssl_certificate_key /root/localhost-key.pem;
 
 	root /var/www/localhost;
 	index index.php index.html;
 
 	server_name localhost *.localhost;
-	
+
 	location / {
 		try_files $uri $uri/ =404;
 	}

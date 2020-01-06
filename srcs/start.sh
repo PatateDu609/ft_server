@@ -14,6 +14,7 @@
 WEBDIR="/var/www/localhost"
 NGINX_CONF_LNK="/etc/nginx/sites-enabled/localhost.conf"
 NGINX_CONF="/etc/nginx/sites-available/localhost.conf"
+INDEX=
 
 cd /root
 echo "Setting up nginx config file"
@@ -34,10 +35,18 @@ echo "Installing Phpmyadmin and Wordpress"
 tar xf pma.tar.gz
 tar xf wordpress.tar.gz
 rm -rf pma.tar.gz wordpress.tar.gz
-mv wordpress $WEBDIR
+if [ "$INDEX" = "wp" ]; then
+	mv wordpress $WEBDIR
+else
+	echo "Setting index.html"
+	mkdir -p $WEBDIR
+	mv wordpress $WEBDIR/wordpress
+	cp /root/index.html $WEBDIR/index.html
+fi
 mv pma $WEBDIR/phpmyadmin
 chown -R www-data:www-data /var/www
 chmod -R 755 /var/www
+
 
 echo "Setting up Phpmyadmin"
 mv config.inc.php $WEBDIR/phpmyadmin
@@ -48,6 +57,5 @@ echo "UPDATE mysql.user SET plugin = 'mysql_native_password' WHERE user='root';"
 
 echo "Launching php and Nginx"
 service php7.3-fpm start
-# service nginx start
-# nginx -g 'daemon off;'
-bash
+nginx -g 'daemon off;'
+# bash

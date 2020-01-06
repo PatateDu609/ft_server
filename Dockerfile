@@ -6,7 +6,7 @@
 #    By: gboucett <gboucett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/11 14:36:16 by gboucett          #+#    #+#              #
-#    Updated: 2019/12/15 23:30:01 by gboucett         ###   ########.fr        #
+#    Updated: 2020/01/06 17:57:21 by gboucett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ RUN apt-get install -y php7.3 php7.3-fpm php7.3-mysql php-common php7.3-cli php7
 RUN apt-get install -y wget libnss3-tools
 
 COPY srcs/wordpress.tar.gz /root
+COPY srcs/index.html /root
 COPY srcs/pma.tar.gz /root
 COPY srcs/config_nginx /root
 COPY srcs/config.inc.php /root
