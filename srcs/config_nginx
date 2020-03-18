@@ -13,8 +13,8 @@
 server {
 	listen 80;
 	listen [::]:80;
-	server_name localhost *.localhost;
-	return 301 https://localhost;
+	server_name boucetta.com *.boucetta.com;
+	return 301 https://boucetta.com;
 }
 
 server {
@@ -28,7 +28,7 @@ server {
 	root /var/www/localhost;
 	index index.php index.html;
 
-	server_name localhost *.localhost;
+	server_name boucetta.com *.boucetta.com;
 
 	location / {
 		try_files $uri $uri/ =404;
